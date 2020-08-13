@@ -1,5 +1,5 @@
 # AnomalyDetection
-Install the package through the AnomalyDetection_0.1.0.tar.gz.//
+Install the package through the AnomalyDetection_0.1.0.tar.gz.
 
 
 Or simply type:
