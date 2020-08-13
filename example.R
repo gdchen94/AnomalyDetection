@@ -1,5 +1,5 @@
-source("utilAD.R")
-source("simulation.R")
+#source("utilAD.R")
+#source("simulation.R")
 #Example 1
 #Generate a time series of ER graphs of length 12,
 #create graph anomaly at time point 6
@@ -87,6 +87,4 @@ for (j in 6:10) {
 }
 df <- data.frame(dat,class=factor(c(rep("t6",5),rep("t8",5))))
 pca_res <- prcomp(dat, scale. = TRUE)
-library(ggfortify)
-autoplot(pca_res)
-autoplot(pca_res, data = df,colour="class")
+ggfortify::autoplot(pca_res, data = df,colour="class")

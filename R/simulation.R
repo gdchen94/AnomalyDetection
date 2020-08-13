@@ -10,7 +10,7 @@ rdpg.sample <- function(X) {
   diag(U) <- runif(n)
   A <- (U < P) + 0 ;
   diag(A) <- 0
-  return(graph.adjacency(A,"undirected"))
+  return(igraph::graph.adjacency(A,"undirected"))
 }
 #' Sample a time series of RDPG graph (length tmax > 17) with same 1-1 matched vertices unweighted
 #' hollow symmetric undirected graphs, the latent positions i.i.d uniform.
@@ -25,7 +25,7 @@ rdpg.sample <- function(X) {
 #'  with latent position estmate difference for vertices (size n x tmax-1 ),
 #'  and a list of length tmax of undirectected hollow symmeric unweighted graphs
 #' @examples
-#' #' @examples
+#'
 #' # Sample a time series of RDPG graph (length tmax > 17) with same 1-1 matched vertices unweighted
 #' # hollow symmetric undirected graphs, the latent positions i.i.d uniform.
 #' # Some vertices in 16-th and 17-th graphs are given perturbations so there exists anomalies at 16:17.

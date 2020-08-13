@@ -1,9 +1,9 @@
-library(igraph)
-library(dplyr)
-library(ggplot2)
-library(latex2exp)
-library(qcc)
-library(gtools)
+# library(igraph)
+# library(dplyr)
+# library(ggplot2)
+# library(latex2exp)
+# library(qcc)
+# library(gtools)
 #'
 #' Given a decreasingly sorted vector, return the given number of elbows
 #'
@@ -92,9 +92,9 @@ getElbows <- function(dat, n = 3, threshold = FALSE, plot = TRUE, main="", ...) 
 #' Function to perform diagonal augmentation for graph adjacency matrix.
 #' @param A a hollow adjacency matrix
 #' @return a non-hollow adjacency matrix
-
+#' @export
 diagAug <- function(A) {
-  diag(A) <- rowSums(A) / (nrow(A)-1)
+  diag(A) <- Matrix::rowSums(A) / (nrow(A)-1)
   return(A)
 }
 #' Calculate \eqn{l_2} distance between latent positions for vertices.
@@ -103,7 +103,7 @@ diagAug <- function(A) {
 
 #' @export
 pdistXY <- function(X,Y) {
-  D <- rowSums((as.matrix(X) - as.matrix(Y))^2)
+  D <- Matrix::rowSums((as.matrix(X) - as.matrix(Y))^2)
   return(sqrt(D))
 }
 
@@ -119,20 +119,20 @@ pdistXY <- function(X,Y) {
 #' the scree plot via the use of profile likelihood, Computational
 #' Statistics & Data Analysis, Volume 51 Issue 2, pp 918-930, November, 2006.
 #' @return A matrix with n rows and d columns containing the estimated latent positions
-
+#' @export
 #' @references Sussman, D.L., Tang, M., Fishkind, D.E., Priebe, C.E.  A
 #' Consistent Adjacency Spectral Embedding for Stochastic Blockmodel Graphs,
 #' \emph{Journal of the American Statistical Association}, Vol. 107(499), 2012
 ase <- function(A, d=NULL, d.max=round(log(nrow(A))),diagaug=TRUE, approx=TRUE, elbow=2) {
   n <- nrow(A)
-  require(Matrix)
+  #require(Matrix)
   # diagaug
   if (diagaug) {
-    diag(A) <- rowSums(A) / (n-1)
+    diag(A) <- Matrix::rowSums(A) / (n-1)
   }
 
   if (approx) {
-    require(irlba)
+    #require(irlba)
     if (is.null(d)){
       A.svd <- irlba::irlba(A, d.max, maxit=10000, tol=1e-10)
       result = getElbows(A.svd$d, plot = TRUE)
@@ -145,7 +145,7 @@ ase <- function(A, d=NULL, d.max=round(log(nrow(A))),diagaug=TRUE, approx=TRUE, 
     }
     A.svd <- irlba::irlba(A, d, maxit=10000, tol=1e-10)
   } else {
-    require(rARPACK)
+    #require(rARPACK)
     if (is.null(d)){
       A.svd <- svd(A,d.max)
       result = getElbows(A.svd$d, plot = TRUE)
@@ -170,11 +170,11 @@ ase <- function(A, d=NULL, d.max=round(log(nrow(A))),diagaug=TRUE, approx=TRUE, 
 
 #' @import igraph
 buildOmni <- function(Alist, diagaug=FALSE) {
-  require(igraph)
-  require(Matrix)
+  # require(igraph)
+  # require(Matrix)
 
   if (class(Alist[[1]]) == "igraph") {
-    Alist <- lapply(Alist, get.adjacency)
+    Alist <- lapply(Alist, igraph::get.adjacency)
   }
 
 
@@ -203,11 +203,11 @@ buildOmni <- function(Alist, diagaug=FALSE) {
 #' @return Omnibus matrix of 2n x 2n
 
 fast2buildOmni <- function(Alist, diagaug=FALSE, attrweight=NULL ) {
-  require(igraph)
-  require(Matrix)
+  # require(igraph)
+  # require(Matrix)
 
   if (class(Alist[[1]]) == "igraph") {
-    Alist <- lapply(Alist, function(x) get.adjacency(x, attr = attrweight ) )
+    Alist <- lapply(Alist, function(x) igraph::get.adjacency(x, attr = attrweight ) )
   }
 
 
@@ -260,16 +260,16 @@ mase.latent <- function(A, latpos.list, dsvd=NULL){
 #'  with latent position estmate difference for vertices (size n x M-1 ).
 doMase <- function(glist, latpos.list, nmase=2, dsvd=NULL,attrweight=NULL)
 {
-  n <- vcount(glist[[1]])
+  n <- igraph::vcount(glist[[1]])
   tmax <- length(glist)
 
   if (nmase == 2) {
-    Xhat <- lapply(1:(tmax-1), function(x) mase.latent(lapply(glist[x:(x+1)], function(y) get.adjacency(y,attr=attrweight) ), latpos.list[x:(x+1)] , dsvd))
+    Xhat <- lapply(1:(tmax-1), function(x) mase.latent(lapply(glist[x:(x+1)], function(y) igraph::get.adjacency(y,attr=attrweight) ), latpos.list[x:(x+1)] , dsvd))
     norm <- sapply(1:(tmax-1), function(x) norm((Xhat[[x]]$Xhat)[[1]] - (Xhat[[x]]$Xhat)[[2]], "2"))
     pdist <- sapply(1:(tmax-1), function(x) pdistXY((Xhat[[x]]$Xhat)[[1]] , (Xhat[[x]]$Xhat)[[2]]))
     dsvd <- sapply(Xhat, function(x) x$d)
   } else {
-    adj <- lapply(glist, function(y) get.adjacency(y, attr = attrweight) )
+    adj <- lapply(glist, function(y) igraph::get.adjacency(y, attr = attrweight) )
     Xhat <- mase.latent(adj, latpos.list,dsvd)
     norm <- sapply(1:(tmax-1), function(x) norm(Xhat$Xhat[[x]]-Xhat$Xhat[[x+1]], "2"))
     pdist <- sapply(1:(tmax-1), function(x) pdistXY(Xhat$Xhat[[x]], Xhat$Xhat[[x+1]]))
@@ -289,13 +289,13 @@ doMase <- function(glist, latpos.list, nmase=2, dsvd=NULL,attrweight=NULL)
 #' estimated invariant subspace, and a list R with the individual score parameters for each graph (size d x d each).
 #'
 #' @references
-#'
+#' @export
 
 mase <- function(Adj_list, latpos.list, dsvd = NULL,
                  elbow_mase = 2,
                  show.scree.results = FALSE) {
   V_all  <- Reduce(cbind, latpos.list)
-  require(rARPACK)
+  #require(rARPACK)
   jointsvd <- svd(V_all)
   if(is.null(dsvd)) {
     # if(show.scree.results) {
@@ -322,8 +322,8 @@ mase <- function(Adj_list, latpos.list, dsvd = NULL,
 #' @return A list containing the score matrices
 #'
 project_networks <- function(Adj_list, V) {
-  require(Matrix)
-  lapply(Adj_list, function(A) crossprod(crossprod(A, V), V))
+  # require(Matrix)
+  lapply(Adj_list, function(A) Matrix::crossprod(Matrix::crossprod(A, V), V))
 }
 #' @param plot.LCL a Boolean variable to decide whether to show the anomalies lower than lower limits (LCL \eqn{\mu^{t}-3\sigma^t}) .
 #' Return a list of cases beyond limits and violating runs
@@ -332,7 +332,7 @@ shewhart.rules <- function(object, limits = object$limits, run.length = qcc.opti
 {
   # Return a list of cases beyond limits and violating runs
   bl <- beyond.limits(object, limits = limits, plot.LCL=plot.LCL )
-  vr <- violating.runs(object, run.length = run.length)
+  vr <- qcc::violating.runs(object, run.length = run.length)
   list(beyond.limits = bl, violating.runs = vr)
 }
 #' @param plot.LCL a Boolean variable to decide whether to show the anomalies lower than lower limits (LCL \eqn{\mu^{t}-3\sigma^t}) .
@@ -378,11 +378,11 @@ plot.qcc <- function(x, l=l, title, plot.LCL=FALSE){
   statistics <- c(stats, newstats)
   indices <- 1:length(statistics)
 
-  library(ggplot2)
+  #library(ggplot2)
   l.length <- length(indices)
   tmax <- (l.length+l-1)
   tvec <- 1:(l.length+l)
-  m2 <- names(running(tvec, width=2))
+  m2 <- names(gtools::running(tvec, width=2))
   minx <- m2[l:(l.length+l-1)]
   vioinx <- rep(0,length(indices))
   runinx <- rep(0,length(indices))
@@ -390,7 +390,7 @@ plot.qcc <- function(x, l=l, title, plot.LCL=FALSE){
   runinx[violations$violating.runs] <- 1
   df <- data.frame(time=indices, y= statistics,lcl=lcl,ucl=ucl,center=center,lim=vioinx,run=runinx)
   if(plot.LCL){
-    p <- ggplot(df,aes(x=time, y=y))+
+    p <- ggplot2::ggplot(df,aes(x=time, y=y))+
       geom_step(aes(x=time, y=ucl), linetype="dashed")+
       geom_step(aes(x=time, y=lcl), linetype="dashed")+
       geom_step(aes(x=time, y=center), linetype="solid") +
@@ -408,7 +408,7 @@ plot.qcc <- function(x, l=l, title, plot.LCL=FALSE){
                x =  tmax-l+1.1, y = rev(lcl)[1]-.3 )+theme_classic(base_size = 18)+
       theme(axis.text.x = element_text(angle=45),legend.position = "none",plot.title = element_text(hjust = 0.5,size=20, face='bold'),plot.subtitle = element_text(hjust = 0.5)) +ggtitle(title)
   }else{
-    p <- ggplot(df,aes(x=time, y=y))+
+    p <- ggplot2::ggplot(df,aes(x=time, y=y))+
       geom_step(aes(x=time, y=ucl), linetype="dashed")+
       geom_step(aes(x=time, y=center), linetype="solid") +
       geom_point(data = df, alpha=1, color="black")+ylab(TeX("$y^{(t)}$"))+
@@ -456,10 +456,10 @@ plot.qcc.vertex <- function(x, l=l, title, plot.LCL=FALSE){
     statistics <- c(stats, newstats)
     indices <- 1:length(statistics)
 
-    library(ggplot2)
+    #library(ggplot2)
     tmax <- l.length+1
     tvec <- 1:(l.length+l)
-    m2 <- names(running(tvec, width=2))
+    m2 <- names(gtools::running(tvec, width=2))
     minx <- m2[l:(l.length+l-1)]
     vioinx <- rep(0,length(indices))
     runinx <- rep(0,length(indices))
@@ -471,7 +471,7 @@ plot.qcc.vertex <- function(x, l=l, title, plot.LCL=FALSE){
   }
   if(plot.LCL){
 
-    p <- ggplot(df,aes(x=vertex, y=y))+
+    p <- ggplot2::ggplot(df,aes(x=vertex, y=y))+
       geom_point(data = df, alpha=.1, color="black",shape=20,size=.5)+
       geom_point(data = df %>% filter(lim==1), alpha=.3, color="red",shape=20,size=1)+
       geom_hline(aes(yintercept=center), linetype="solid")+facet_wrap(~timepoints,nrow = 1,switch = "x", scales = "fixed") +
@@ -481,7 +481,7 @@ plot.qcc.vertex <- function(x, l=l, title, plot.LCL=FALSE){
       theme(axis.text.x = element_text(angle=45),legend.position = "none",plot.title = element_text(hjust = 0.5,size=10, face='bold'),plot.subtitle = element_text(hjust = 0.5)) +ggtitle(title)
   }else{
 
-    p <- ggplot(df,aes(x=vertex, y=y))+
+    p <- ggplot2::ggplot(df,aes(x=vertex, y=y))+
       geom_point(data = df, alpha=.1, color="black",shape=20,size=.5)+
       geom_point(data = df %>% filter(lim==1), alpha=.3, color="red",shape=20,size=1)+
       geom_hline(aes(yintercept=center), linetype="solid")+facet_wrap(~timepoints,nrow = 1,switch = "x", scales = "fixed") +
@@ -685,6 +685,7 @@ qcc <- function(data, type = c("xbar", "R", "S", "xbar.one", "p", "np", "c", "u"
 #' @references Arroyo, J., Athreya, A., Cape, J., Chen, G., Priebe, C.E. and Vogelstein, J.T., 2019. Inference for multiple heterogeneous networks with a common invariant subspace. arXiv preprint arXiv:1906.10026.
 #' @return A list containing a vector GraphAD of length tmax-l which consists of control charts deviations, with the
 #' a list VertexAD (length tmax-l) with vectors of anomalous vertices indices for each graph.
+#' @export
 #' @examples
 #' glist <- list()
 #' for (i in 1:5) {
@@ -727,11 +728,11 @@ qcc <- function(data, type = c("xbar", "R", "S", "xbar.one", "p", "np", "c", "u"
 
 qccAD <- function(glist, method="OMNI", diag.augment = TRUE, l=3,d=NULL, dsvd=d, approx=TRUE, par=FALSE, numpar=2, elbow=2, plot.figure=TRUE,plot.LCL=FALSE){
   tmax <- length(glist)
-  n <- vcount(glist[[1]])
+  n <- igraph::vcount(glist[[1]])
   tvec <- 1:tmax
-  m2 <- names(running(tvec, width=2))
+  m2 <- names(gtools::running(tvec, width=2))
   #check if all the graphs are binary
-  if(Reduce("+",lapply(glist, function(x) is.weighted(x)))){
+  if(Reduce("+",lapply(glist, function(x) igraph::is.weighted(x)))){
     attrweight <- "weight"
   }else{
     attrweight <- NULL
@@ -739,7 +740,7 @@ qccAD <- function(glist, method="OMNI", diag.augment = TRUE, l=3,d=NULL, dsvd=d,
   if(l>(tmax-1)||l<3||tmax<4){
     print(paste0("l has to an integer between 3 and ",tmax-1, " and you need to at least have 4 graphs"))
   }
-  require(foreach)
+  #require(foreach)
   if (method=="OMNI"){
     #Initialize moving averages and moving standard deviation for GraphAD
     mean2omni <- rep(1, (tmax-1)-(l-1))
@@ -749,22 +750,22 @@ qccAD <- function(glist, method="OMNI", diag.augment = TRUE, l=3,d=NULL, dsvd=d,
     std2vomni <- rep(1,(tmax-1)-(l-1))
     #Do omnibus embedding
     if(par){
-      require(doParallel)
-      cl <- makeCluster(numpar)
-      registerDoParallel(cl)
-      clusterEvalQ(cl, source("utilAD.R"))
-      clusterExport(cl = cl, varlist = list("ase", "fast2buildOmni", "getElbows", "glist",
+      #require(doParallel)
+      cl <- parallel::makeCluster(numpar)
+      doParallel::registerDoParallel(cl)
+      parallel::clusterEvalQ(cl, library("AnomalyDetection"))#source("utilAD.R"))
+      parallel::clusterExport(cl = cl, varlist = list("ase", "fast2buildOmni", "getElbows", "glist",
                                             "elbow", "d","approx", "diag.augment","attrweight"), envir = environment())
-      allomni <- foreach(i =1:(tmax-1), .combine='comb', .multicombine=TRUE,.packages = "igraph",
+      allomni <- foreach::foreach(i =1:(tmax-1), .combine='comb', .multicombine=TRUE,.packages = "igraph",
                          .init=list(list(), list())) %dopar% {
                            O <- fast2buildOmni( glist[i:(i+1)]  , diagaug=diag.augment, attrweight=attrweight)
                            a <- ase(O, d=d, diagaug=FALSE, approx=approx,elbow=elbow)
                            list(a, a$d)
                          }
-      stopCluster(cl)
+      parallel::stopCluster(cl)
     } else {
-      registerDoSEQ()
-      allomni <- foreach(i =1:(tmax-1), .combine='comb', .multicombine=TRUE,.packages = "igraph",
+      foreach::registerDoSEQ()
+      allomni <- foreach::foreach(i =1:(tmax-1), .combine='comb', .multicombine=TRUE,.packages = "igraph",
                          .init=list(list(), list())) %dopar% {
                            O <- fast2buildOmni( glist[i:(i+1)]  , diagaug=diag.augment, attrweight=attrweight)
                            Z <- ase(O, d=d, diagaug=FALSE, approx=approx,elbow=elbow)
@@ -817,23 +818,23 @@ qccAD <- function(glist, method="OMNI", diag.augment = TRUE, l=3,d=NULL, dsvd=d,
     std2v <- rep(1,(tmax-1)-(l-1))
     #Do individual ASE for MASE
     if(par){
-      require(doParallel)
-      cl <- makeCluster(numpar)
-      registerDoParallel(cl)
-      clusterEvalQ(cl, source("utilAD.R"))
-      clusterExport(cl = cl, varlist = list("ase", "getElbows", "glist",
+      #require(doParallel)
+      cl <- parallel::makeCluster(numpar)
+      doParallel::registerDoParallel(cl)
+      parallel::clusterEvalQ(cl, library("AnomalyDetection"))#source("utilAD.R"))
+      parallel::clusterExport(cl = cl, varlist = list("ase", "getElbows", "glist",
                                             "elbow", "d","approx", "diag.augment","attrweight"), envir = environment())
-      allase <- foreach(i =1:tmax, .combine='comb', .multicombine=TRUE,.packages = "igraph",
+      allase <- foreach::foreach(i =1:tmax, .combine='comb', .multicombine=TRUE,.packages = "igraph",
                      .init=list(list(), list())) %dopar% {
-                       latpos <- ase(get.adjacency(glist[[i]], attr=attrweight), d=d, diagaug=diag.augment, approx=approx,elbow=elbow)$Xhat
+                       latpos <- ase(igraph::get.adjacency(glist[[i]], attr=attrweight), d=d, diagaug=diag.augment, approx=approx,elbow=elbow)$Xhat
                        list(latpos, dim(latpos)[2])
                      }
-      stopCluster(cl)
+      parallel::stopCluster(cl)
     } else {
-      registerDoSEQ()
-      allase <- foreach(i =1:tmax, .combine='comb', .multicombine=TRUE,.packages = "igraph",
+      foreach::registerDoSEQ()
+      allase <- foreach::foreach(i =1:tmax, .combine='comb', .multicombine=TRUE,.packages = "igraph",
                      .init=list(list(), list())) %dopar% {
-                       latpos <- ase(get.adjacency(glist[[i]], attr=attrweight), d=d, diagaug=diag.augment, approx=approx,elbow=elbow)$Xhat
+                       latpos <- ase(igraph::get.adjacency(glist[[i]], attr=attrweight), d=d, diagaug=diag.augment, approx=approx,elbow=elbow)$Xhat
                        list(latpos, dim(latpos)[2])
                      }
     }
