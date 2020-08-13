@@ -1,10 +1,9 @@
 # AnomalyDetection
 ## Code and Results
 
-All the codes are written in `R`, and here is the instruction for getting the results in the example.R 
+All the codes are written in `R`, and here is the instruction for getting the results in the example.pdf using the R file example.R
 
 ### Demo
-
 ```
 require(knitr)
 stitch("example.R")
