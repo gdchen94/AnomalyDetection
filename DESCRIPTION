@@ -9,7 +9,6 @@ License: GPL-3.
 Depends:
 	foreach (>= 1.4.7),
 	qcc (>= 2.7),                
-	ggfortify (>= 0.4.10),
 	doParallel (>= 1.0.15),
 	ggplot2 (>= 3.2.1),
         irlba (>= 2.3.3),

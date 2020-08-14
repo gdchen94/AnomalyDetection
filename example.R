@@ -87,4 +87,5 @@ for (j in 6:10) {
 }
 df <- data.frame(dat,class=factor(c(rep("t6",5),rep("t8",5))))
 pca_res <- prcomp(dat, scale. = TRUE)
-ggfortify::autoplot(pca_res, data = df,colour="class")
+library(ggfortify)
+autoplot(pca_res, data = df,colour="class")
