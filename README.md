@@ -1,30 +1,23 @@
 # AnomalyDetection R package
-AnomalyDetection is a R package to detect anomalies in a time series of graphs. 
+AnomalyDetection is a R package to detect anomalies in time series of graphs. 
 Specifically, it can be applied in two related, complementary inference tasks: 
 the detection of anomalous graphs within a time series, and the detection
 of temporally anomalous vertices. 
 
 ## How the package works
 
-The underlying algorithm approaches these tasks
-via the adaptation of statistically principled methods for joint
-graph inference, specifically multiple adjacency spectral embedding
-(MASE) and omnibus embedding (OMNI). It also builds upon the quantative
+The underlying algorithm approaches these tasks via the adaptation of statistically
+principled methods for joint graph inference, specifically multiple adjacency
+spectral embedding (MASE) and omnibus embedding (OMNI). It also builds upon the quantative
 control chart (https://en.wikipedia.org/wiki/Control_chart) for detecting anomalies. 
-Note that S-H-ESD can be used to detect both global as well as local anomalies. This is achieved by
-employing time series decomposition and using robust statistical metrics, viz.,
-median together with ESD. In addition, for long time series (say, 6 months of
-minutely data), the algorithm employs piecewise approximation - this is rooted
-to the fact that trend extraction in the presence of anomalies in non-trivial -
-for anomaly detection.
+Note that it can be used to detect anomalies both in overall graphs as well as individual anomalies. 
+This is achieved by employing joint graph embedding for adjacent graphs sequentially, and track the
+change of adjacent latent positions difference via quantative control charts. Con
 
-Besides time series, the package can also be used to detect anomalies in a
-vector of numerical values. We have found this very useful as many times the
-corresponding timestamps are not available. The package provides rich
-visualization support. The user can specify the direction of anomalies, the
-window of interest (such as last day, last hour), enable/disable piecewise
-approximation; additionally, the x- and y-axis are annotated in a way to assist
-visual data analysis.
+The package provides some preprocessing tools to deal, for example, different number of vertices in
+time series of graphs.
+The user can specify the length of moving window of interest (such as seven days, twenty-four hours), 
+enable/disable singular value decompostion approximation etc.
 
 ## How to get started
 
