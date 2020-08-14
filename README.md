@@ -77,7 +77,7 @@ require(knitr)
 stitch("example.R")
 ```
 and the result should look like ![example.pdf](https://github.com/gdchen94/AnomalyDetection/blob/master/example.pdf)
-(This may take around 1 minutes on a typical laptop.)
+(This may take around 1 minute on a typical laptop.)
 
 
 
