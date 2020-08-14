@@ -109,7 +109,7 @@ pltclique <- function(gip, p, art.anomaly.v){
 
 #get degree distribution for graphs
 #'
-#' It extracts (non-zero) degree change \eqn{deg.change} matrix n \times m-1 from a list of graphs.
+#' It extracts (non-zero) degree change \eqn{deg.change} matrix n by m-1 from a list of graphs.
 #'
 #' @param gip a list of graphs in \code{igraph} format.
 #' @author Guodong Chen <gchen35@jhu.edu>
@@ -133,7 +133,7 @@ getdegchange <- function(gip){
 
 
 #' get weighted degree change for a list of weighted graphs
-#' It extracts (non-zero) weighted degree change matrix n \times m-1 \eqn{deg.change} from a list of graphs.
+#' It extracts (non-zero) weighted degree change matrix n by m-1 \eqn{deg.change} from a list of graphs.
 #'
 #' @param gip a list of graphs in \code{igraph} format.
 #' @author Guodong Chen <gchen35@jhu.edu>
