@@ -50,17 +50,8 @@ details the input arguments and the output of the function qccAD.
 
 ## A simple example
 
-To get started, the user is recommended to use the example dataset which comes
-with the packages. Execute the following commands:
-
-```
-data(raw_data)
-res = AnomalyDetectionTs(raw_data, max_anoms=0.02, direction='both', plot=TRUE)
-res$plot
-```
-
-
-All the codes are written in `R`, and here is the instruction for getting the results in the example.pdf using the R file example.R
+To get started, the user is recommended to use the example.R file to
+get the results in the example.pdf
 
 
 ### Demo
