@@ -63,8 +63,8 @@ result.OMNI<- qccAD(glist, l=4,d=1,dsvd=NULL,method="OMNI",
 ![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/GraphADExample1.png)
 ![Fig 2](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/VertexADExample1.png)
 
-From the plot, we observe that the input time series experiences both positive 
-and negative anomalies. 
+From the plot, we observe that the input time series experiences positive  anomalies
+at time points 5:6. 
 
 To get started, the user is recommended to use the example.R file to
 get the results in the example.pdf
