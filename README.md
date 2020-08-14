@@ -28,7 +28,13 @@ install.packages("devtools")
 devtools::install_github("gdchen94/AnomalyDetection")
 library(AnomalyDetection)
 ```
-Alternatively, you can download the
+Alternatively, you can download the AnomalyDetection_0.1.0.tar.gz
+and install it use
+```
+install.packages("devtools")
+devtools::install_github("gdchen94/AnomalyDetection")
+library(AnomalyDetection)
+```
 
 The function qccAD is called to detect one or more statistically
 significant anomalies in the input time series of graphs. The documentation of the
