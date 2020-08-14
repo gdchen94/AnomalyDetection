@@ -2,7 +2,7 @@
 % Please edit documentation in R/preprocess.R
 \name{getdegchange}
 \alias{getdegchange}
-\title{It extracts (non-zero) degree change \eqn{deg.change} matrix n \times m-1 from a list of graphs.}
+\title{It extracts (non-zero) degree change \eqn{deg.change} matrix n by m-1 from a list of graphs.}
 \usage{
 getdegchange(gip)
 }
@@ -13,7 +13,7 @@ getdegchange(gip)
 A matrix of size n x t-1, with each element to be degree changes
 }
 \description{
-It extracts (non-zero) degree change \eqn{deg.change} matrix n \times m-1 from a list of graphs.
+It extracts (non-zero) degree change \eqn{deg.change} matrix n by m-1 from a list of graphs.
 }
 \author{
 Guodong Chen <gchen35@jhu.edu>

@@ -3,7 +3,7 @@
 \name{getweightchange}
 \alias{getweightchange}
 \title{get weighted degree change for a list of weighted graphs
-It extracts (non-zero) weighted degree change matrix n \times m-1 \eqn{deg.change} from a list of graphs.}
+It extracts (non-zero) weighted degree change matrix n by m-1 \eqn{deg.change} from a list of graphs.}
 \usage{
 getweightchange(gip)
 }
@@ -15,7 +15,7 @@ A matrix of size n x t-1, with each element to be weight degree changes
 }
 \description{
 get weighted degree change for a list of weighted graphs
-It extracts (non-zero) weighted degree change matrix n \times m-1 \eqn{deg.change} from a list of graphs.
+It extracts (non-zero) weighted degree change matrix n by m-1 \eqn{deg.change} from a list of graphs.
 }
 \author{
 Guodong Chen <gchen35@jhu.edu>
