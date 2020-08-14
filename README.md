@@ -50,19 +50,36 @@ details the input arguments and the output of the function qccAD.
 
 ## A simple example
 
+To get started, the user is recommended to use the example dataset (time series of 
+independent Erdos-Reynyi graphs with anomaly at 6-th graph generated as in Example1 in
+Example.R) which comes with the packages. Execute the following commands:
+
+```
+data(glistExample1)
+result.OMNI<- qccAD(glist, l=4,d=1,dsvd=NULL,method="OMNI",
+ diag.augment = TRUE, approx=FALSE, par=FALSE, numpar=2)
+```
+
+![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/GraphADExample1.png)
+![Fig 2](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/VertexADExample1.png)
+
+From the plot, we observe that the input time series experiences both positive 
+and negative anomalies. 
+
 To get started, the user is recommended to use the example.R file to
 get the results in the example.pdf
 
 
-### Demo
+## Demo
+To see further examples run example.R as
 ```
 require(knitr)
 stitch("example.R")
 ```
-and the result should look like example.pdf   
+and the result should look like ![example.pdf](https://github.com/gdchen94/AnomalyDetection/blob/master/example.pdf)
 (This may take around 1 minutes on a typical laptop.)
 
-![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/example.pdf)
+
 
 
 
