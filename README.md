@@ -60,7 +60,8 @@ result.OMNI<- qccAD(glist, l=4,d=1,dsvd=NULL,method="OMNI",
  diag.augment = TRUE, approx=FALSE, par=FALSE, numpar=2)
 ```
 
-![Fig 1](https://github.com/twitter/AnomalyDetection/blob/master/figs/Fig1.png)
+![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/GraphADExample1.png)
+![Fig 2](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/VertexADExample1.png)
 
 From the plot, we observe that the input time series experiences both positive 
 and negative anomalies. 
