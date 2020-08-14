@@ -12,7 +12,7 @@ spectral embedding (MASE) and omnibus embedding (OMNI). It also builds upon the 
 control chart (https://en.wikipedia.org/wiki/Control_chart) for detecting anomalies. 
 Note that it can be used to detect anomalies both in overall graphs as well as individual anomalies. 
 This is achieved by employing joint graph embedding for adjacent graphs sequentially, and track the
-change of adjacent latent positions difference via quantative control charts. Con
+change of adjacent latent positions difference via quantative control charts. 
 
 The package provides some preprocessing tools to deal, for example, different number of vertices in
 time series of graphs.
@@ -61,7 +61,9 @@ result.OMNI<- qccAD(glist, l=4,d=1,dsvd=NULL,method="OMNI",
 ```
 
 ![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/GraphADExample1.png)
+*image_caption*
 ![Fig 2](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/VertexADExample1.png)
+*image_caption*
 
 From the plot, we observe that the input time series experiences positive  anomalies
 at time points 5:6. 
