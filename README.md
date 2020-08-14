@@ -1,16 +1,17 @@
 # AnomalyDetection R package
-AnomalyDetection is an open-source R package to detect anomalies which is
-robust, from a statistical standpoint, in the presence of seasonality and an
-underlying trend. The AnomalyDetection package can be used in wide variety of
-contexts. For example, detecting anomalies in system metrics after a new
-software release, user engagement post an A/B test, or for problems in
-econometrics, financial engineering, political and social sciences.
+AnomalyDetection is a R package to detect anomalies in a time series of graphs. 
+Specifically, it can be applied in two related, complementary inference tasks: 
+the detection of anomalous graphs within a time series, and the detection
+of temporally anomalous vertices. 
 
 ## How the package works
 
-The underlying algorithm – referred to as Seasonal Hybrid ESD (S-H-ESD) builds
-upon the Generalized ESD test for detecting anomalies. Note that S-H-ESD can
-be used to detect both global as well as local anomalies. This is achieved by
+The underlying algorithm approaches these tasks
+via the adaptation of statistically principled methods for joint
+graph inference, specifically multiple adjacency spectral embedding
+(MASE) and omnibus embedding (OMNI). It also builds upon the quantative
+control chart (https://en.wikipedia.org/wiki/Control_chart) for detecting anomalies. 
+Note that S-H-ESD can be used to detect both global as well as local anomalies. This is achieved by
 employing time series decomposition and using robust statistical metrics, viz.,
 median together with ESD. In addition, for long time series (say, 6 months of
 minutely data), the algorithm employs piecewise approximation - this is rooted
