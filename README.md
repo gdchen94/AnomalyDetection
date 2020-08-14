@@ -66,6 +66,7 @@ result.OMNI<- qccAD(glist, l=4,d=1,dsvd=NULL,method="OMNI",
 represents moving average of sample means, dashed line (UCL) represents moving means plus three adjusted moving sample range; black dots are at times where the latent positions are claimed to be normal, and the red dots are those which lie outside of UCL and are claimed as anomalous graphs.*
 
 ![Fig 2](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/VertexADExample1.png)
+
 *Control chart for a time series of Erdos-Renyi graphs with an anomaly at time points 5 and 6 (Example 1 in Example.R) for VertexAD. Center solid line (CL)
 represents moving average of sample means, dashed line (UCL) represents moving means plus three adjusted moving sample range; black dots are at times where the latent positions are claimed to be normal, and the red dots are those which lie outside of UCL and are claimed as anomalous vertices..*
 
