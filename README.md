@@ -28,12 +28,15 @@ install.packages("devtools")
 devtools::install_github("gdchen94/AnomalyDetection")
 library(AnomalyDetection)
 ```
-Alternatively, you can download the AnomalyDetection_0.1.0.tar.gz
-and install it use
+Alternatively, you can download the file AnomalyDetection_0.1.0.tar.gz
+and install it using either (within R)
 ```
-install.packages("devtools")
-devtools::install_github("gdchen94/AnomalyDetection")
+install.packages("AnomalyDetection_0.1.0.tar.gz", repos = NULL, type ="source")
 library(AnomalyDetection)
+```
+or in terminal (say you download it in Desktop)
+```
+R CMD INSTALL Desktop/AnomalyDetection_0.1.0.tar.gz
 ```
 
 The function qccAD is called to detect one or more statistically
