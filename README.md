@@ -73,8 +73,7 @@ get the results in the example.pdf
 ## Demo
 To see some further examples, run example.R as
 ```
-require(knitr)
-stitch("example.R")
+require(knitr)stitch_rhtml("example.R")
 ```
 and the result should look like ![example.pdf](https://github.com/gdchen94/AnomalyDetection/blob/master/example.pdf)
 (This may take around 1 minute on a typical laptop.)
