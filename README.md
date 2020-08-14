@@ -25,26 +25,18 @@ Install the R package using the following commands on the R console:
 
 ```
 install.packages("devtools")
-devtools::install_github("twitter/AnomalyDetection")
+devtools::install_github("gdchen94/AnomalyDetection")
 library(AnomalyDetection)
 ```
+Alternatively, you can download the
 
-The function AnomalyDetectionTs is called to detect one or more statistically
-significant anomalies in the input time series. The documentation of the
-function AnomalyDetectionTs, which can be seen by using the following command,
-details the input arguments and the output of the function AnomalyDetectionTs.
-
-```
-help(AnomalyDetectionTs)
-```
-
-The function AnomalyDetectionVec is called to detect one or more statistically
-significant anomalies in a vector of observations. The documentation of the
-function AnomalyDetectionVec, which can be seen by using the following command,
-details the input arguments and the output of the function AnomalyDetectionVec.
+The function qccAD is called to detect one or more statistically
+significant anomalies in the input time series of graphs. The documentation of the
+function qccAD, which can be seen by using the following command,
+details the input arguments and the output of the function qccAD.
 
 ```
-help(AnomalyDetectionVec)
+?qccAD
 ```
 
 ## A simple example
