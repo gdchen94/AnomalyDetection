@@ -1,3 +1,24 @@
+# Multiple Network Embedding for Anomaly Detection in Time Series of Graphs
+
+Guodong Chen, Jes´us Arroyo, Avanti Athreya, Joshua Cape, Joshua T. Vogelstein, Youngser Park, Chris White,
+Jonathan Larson, Weiwei Yang, and Carey E. Priebe
+
+## Abstract
+
+This paper considers the graph signal processing
+problem of anomaly detection in time series of graphs. We examine
+two related, complementary inference tasks: the detection
+of anomalous graphs within a time series, and the detection
+of temporally anomalous vertices. We approach these tasks
+via the adaptation of statistically principled methods for joint
+graph inference, specifically multiple adjacency spectral embedding
+(MASE) and omnibus embedding (OMNI). We demonstrate that
+these two methods are effective for our inference tasks. Moreover,
+we assess the performance of these methods in terms of the
+underlying nature of detectable anomalies. Our results delineate
+the relative strengths and limitations of these procedures, and
+provide insight into their use.
+
 # AnomalyDetection R package
 AnomalyDetection is a R package to detect anomalies in time series of graphs. 
 Specifically, it can be applied in two related, complementary inference tasks: 
