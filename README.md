@@ -71,7 +71,7 @@ stitch("example.R")
 and the result should look like example.pdf   
 (This may take around 1 minutes on a typical laptop.)
 
-![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/example.pdf)
+![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/example-Rnwauto-report-1.pdf)
 
 From the plot, we observe that the input time series experiences both positive 
 and negative anomalies. Furthermore, many of the anomalies in the time series
