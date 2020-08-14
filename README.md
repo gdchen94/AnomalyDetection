@@ -102,7 +102,7 @@ get the results in the example.pdf
 To see some further examples, run example.R as
 ```
 require(knitr)
-stitch_rhtml("example.R")
+stitch("example.R")
 ```
 and the result should look like ![example.pdf](./example.pdf)
 (This may take around 1 minute on a typical laptop.)
