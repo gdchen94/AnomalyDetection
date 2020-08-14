@@ -61,7 +61,8 @@ result.OMNI<- qccAD(glist, l=4,d=1,dsvd=NULL,method="OMNI",
 ```
 
 ![Fig 1](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/GraphADExample1.png)
-*image_caption*
+*Control chart for a time series of Erdos-Renyi graphs with an anomaly at time points 5 and 6 (Example 1 in Example.R) for GraphAD. Center solid line (CL)
+represents moving average of sample means $y(t)$, dashed line (UCL) represents $y^(t) + 3\sigma^(t)$, where $\sigma^(t)$ is adjusted moving sample range; black dots are y(t) at times where the latent positions are claimed to be normal, and the red dots are those $y(t)$ which lie outside of UCL and are claimed as anomalous graphs.*
 ![Fig 2](https://github.com/gdchen94/AnomalyDetection/blob/master/figure/VertexADExample1.png)
 *image_caption*
 
