@@ -71,7 +71,7 @@ get the results in the example.pdf
 
 
 ## Demo
-To see further examples run example.R as
+To see some further examples, run example.R as
 ```
 require(knitr)
 stitch("example.R")
