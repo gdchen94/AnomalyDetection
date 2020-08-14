@@ -14,6 +14,3 @@ giant.component(graph, ...)
 find largest connected component in a graph
 It extracts (non-zero) largest connected subgraph .
 }
-\author{
-Guodong Chen <gchen35@jhu.edu>
-}

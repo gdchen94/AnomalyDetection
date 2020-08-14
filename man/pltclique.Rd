@@ -21,6 +21,3 @@ A list containing a planted clique size as size of art.anomaly.v at p-th graph
 create a planted clique
 It creates planted clique for a specific graph for a list of graphs.
 }
-\author{
-Guodong Chen <gchen35@jhu.edu>
-}

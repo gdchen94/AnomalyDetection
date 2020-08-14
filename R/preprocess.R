@@ -5,7 +5,6 @@
 #'
 #' @param g a graph in \code{igraph} format or an n x 2 edge list or an n x n adjacency matrix
 #'
-#' @author Youngser Park <youngser@jhu.edu>
 #' @export
 #' @import igraph
 ptr <- function(g)
@@ -33,7 +32,6 @@ ptr <- function(g)
 #'
 #' @param graph a graph in \code{igraph} format
 #'
-#' @author Guodong Chen <gchen35@jhu.edu>
 #' @export
 #' @import igraph
 giant.component <- function(graph, ...) {
@@ -46,7 +44,6 @@ giant.component <- function(graph, ...) {
 #'
 #' @param gip a list of graphs in \code{igraph} format
 #'
-#' @author Guodong Chen <gchen35@jhu.edu>
 #' @export
 #' @import igraph
 #' @return A list of graphs in igraph format
@@ -85,7 +82,6 @@ jlcc <- function(gip){
 #' @param gip a list of graphs in \code{igraph} format.
 #' @param p is the index of graph to be inserted a planted clique
 #' @param art.anomaly.v is the vertex index in igraph.vs format to be planted clique.
-#' @author Guodong Chen <gchen35@jhu.edu>
 #' @export
 #' @import igraph
 #' @return A list containing a planted clique size as size of art.anomaly.v at p-th graph
@@ -112,7 +108,6 @@ pltclique <- function(gip, p, art.anomaly.v){
 #' It extracts (non-zero) degree change \eqn{deg.change} matrix n by m-1 from a list of graphs.
 #'
 #' @param gip a list of graphs in \code{igraph} format.
-#' @author Guodong Chen <gchen35@jhu.edu>
 #' @export
 #' @import igraph
 #' @return A matrix of size n x t-1, with each element to be degree changes
@@ -136,7 +131,6 @@ getdegchange <- function(gip){
 #' It extracts (non-zero) weighted degree change matrix n by m-1 \eqn{deg.change} from a list of graphs.
 #'
 #' @param gip a list of graphs in \code{igraph} format.
-#' @author Guodong Chen <gchen35@jhu.edu>
 #' @export
 #' @import igraph
 #' @return A matrix of size n x t-1, with each element to be weight degree changes

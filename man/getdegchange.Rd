@@ -15,6 +15,3 @@ A matrix of size n x t-1, with each element to be degree changes
 \description{
 It extracts (non-zero) degree change \eqn{deg.change} matrix n by m-1 from a list of graphs.
 }
-\author{
-Guodong Chen <gchen35@jhu.edu>
-}

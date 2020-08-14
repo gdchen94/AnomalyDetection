@@ -17,6 +17,3 @@ A list of graphs in igraph format
 remove edges which has zero weights for all graphs (if any) and find jointly largest connected component in graphs. Finally it removes all self-loops,
 It extracts (non-zero) igraph list \eqn{gip} and removes all edges with zero edge weights and return a list of jointly largest connected component in graphs without self-loops .
 }
-\author{
-Guodong Chen <gchen35@jhu.edu>
-}
