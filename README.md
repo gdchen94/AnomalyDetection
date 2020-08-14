@@ -64,7 +64,6 @@ All the codes are written in `R`, and here is the instruction for getting the re
 
 
 ### Demo
-First, put the 
 ```
 require(knitr)
 stitch("example.R")
