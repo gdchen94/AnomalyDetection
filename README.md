@@ -3,6 +3,8 @@
 Guodong Chen, Jesus Arroyo, Avanti Athreya, Joshua Cape, Joshua T. Vogelstein, Youngser Park, Chris White,
 Jonathan Larson, Weiwei Yang, and Carey E. Priebe
 
+https://arxiv.org/abs/2008.10055
+
 ## Abstract
 
 This paper considers the graph signal processing
