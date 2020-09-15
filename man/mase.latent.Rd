@@ -14,9 +14,7 @@ mase.latent(A, latpos.list, dsvd = NULL)
 \item{dsvd}{dimension for joint embedding. If NULL then dimension is chosen automatically as the second elbow selected in Zhu & Ghodsi method for the scree plot of the singular values of the concatenated spectral embeddings of invidual ASE estimates.}
 }
 \value{
-A list containing a vector tnorm of length M-1, with \eqn{l_2} norm of
-latent position estmate difference for graphs, and a matrix pdist
- with \eqn{l_2} distance between latent position estmate for each vertex (size n x M-1 ).
+A list with length (M-1) consists of matrices with size n x dsvd each.
 }
 \description{
 Function to obtain latent position estmates for MASE (Multiple Adjancency Spectral Embedding) with individual ASE estimates for corresponding graphs
